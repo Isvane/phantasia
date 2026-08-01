@@ -16,7 +16,7 @@ export class FuzzySearchEngine {
     }
   }
 
-  get result(): SearchResult[] {
+  result = $derived.by(() => {
     if (!this.dict || !this.query.trim()) {
       return [];
     }
@@ -26,5 +26,5 @@ export class FuzzySearchEngine {
       console.error("Search error:", e);
       return [];
     }
-  }
+  });
 }
