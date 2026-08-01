@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from '$app/paths';
   const name = "Aly Hazamy";
   const role = "3rd Year CS Student";
   const location = "Indonesia";
@@ -23,7 +24,7 @@
     </p>
 
     <p>
-      <a href="/project/fuzzies">Explore Fuzzies Project Page &rarr;</a>
+      <a href="{base}/project/fuzzies">Explore Fuzzies Project Page &rarr;</a>
     </p>
   </section>
 
