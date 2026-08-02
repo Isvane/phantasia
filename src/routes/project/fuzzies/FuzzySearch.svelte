@@ -11,7 +11,7 @@
 
 <main>
   <h1>Fuzzy Search (Powered by Fuzzies)</h1>
-
+  <br>
   {#if !searcher.isReady}
     <p>Loading WebAssembly module...</p>
   {:else}
