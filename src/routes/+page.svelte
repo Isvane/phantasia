@@ -1,5 +1,6 @@
 <script lang="ts">
     import { base } from "$app/paths";
+    import profile from "$lib/assets/profile.jpeg";
 
     const name = "Haiqal Aly Hazamy";
     const role = "Backend & Systems Engineer";
@@ -8,120 +9,164 @@
     const github = "https://github.com/Isvane";
 
     const techStack = [
-      { category: "Languages", techs: ["Rust", "Go", "TypeScript"] },
-      { category: "Databases", techs: ["PostgreSQL", "Redis", "SQLite"] },
-      { category: "Infra", techs: ["Docker", "Linux", "Git"] },
-      { category: "Learning", techs: ["WebAssembly", "Svelte"] },
+        { category: "Languages", techs: ["Rust", "Go", "TypeScript"] },
+        { category: "Databases", techs: ["PostgreSQL", "Redis", "SQLite"] },
+        { category: "Infra", techs: ["Docker", "Linux", "Git"] },
+        { category: "Learning", techs: ["WebAssembly", "Svelte"] },
     ];
 </script>
 
 <div class="ambient-glow"></div>
 
-<main class="portfolio-container">
-    <nav class="brand-nav">
+<nav class="brand-nav glass-nav fade-in">
+    <div class="nav-content container">
         <span class="logo">
             Tsubasa
             <span class="kanji-wrapper">
                 <span class="kanji">翼</span>
             </span>
         </span>
-    </nav>
-
-    <header class="hero glass-panel">
-        <h1>{name}</h1>
-        <p class="subtitle">{role} <span class="dot">·</span> {location}</p>
-        <p class="bio">
-            3rd-year CS student building fast backend systems and practical developer tools.
-            I focus on writing clean code, fixing real-world performance bottlenecks, and prioritizing practice over theory.
-        </p>
-        <div class="hero-links">
-            <a href="mailto:{email}" class="link icon-link">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <rect width="20" height="16" x="2" y="4" rx="2" />
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                </svg>
-                Email
-            </a>
-
-            <a
-                href={github}
-                target="_blank"
-                rel="noreferrer"
-                class="link icon-link"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <path
-                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
-                    />
-                    <path d="M9 18c-4.51 2-5-2-7-2" />
-                </svg>
-                GitHub
-            </a>
+        <div class="nav-links">
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#stack" class="nav-link">Stack</a>
         </div>
-    </header>
+    </div>
+</nav>
 
-    <section class="section">
-        <h2 class="section-title">Featured Projects</h2>
-
-        <div class="project-card glass-panel">
-            <div class="project-header">
-                <h3>fuzzies</h3>
-                <span class="badge">Rust</span>
-            </div>
-            <p class="project-desc">
-                An easy-to-use Rust library for instant, typo-tolerant search.
-                Takes the headache out of complex fuzzy lookups with a clean API that runs on both the backend and in the browser via WebAssembly.
+<main class="portfolio-container">
+    <section class="hero-section container">
+        <div class="hero-content fade-up delay-1">
+            <h1>{name}</h1>
+            <p class="subtitle">
+                <span class="highlight">{role}</span> <span class="dot">·</span>
+                {location}
             </p>
-            <div class="project-footer">
-                <a href="{base}/project/fuzzies" class="cta-button">
-                    Launch Fuzzies <span class="arrow">&rarr;</span>
+            <p class="bio">
+                3rd-year CS student building developer tools and backend projects.
+                I got a relatively late start to coding, so I prioritize hands-on building, shipping practical software,
+                and contributing to open source over studying pure theory or grinding LeetCode.
+            </p>
+            <div class="hero-links">
+                <a href="mailto:{email}" class="link icon-link button-primary">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <rect width="20" height="16" x="2" y="4" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                    Email Me
                 </a>
+
+                <a
+                    href={github}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="link icon-link button-secondary"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path
+                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+                        />
+                        <path d="M9 18c-4.51 2-5-2-7-2" />
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+        <div class="hero-visual fade-up delay-2">
+            <img src={profile} alt="Profile" class="profile-pic glass-panel" />
+            <div class="visual-accent"></div>
+        </div>
+    </section>
+
+    <section id="projects" class="section alt-bg">
+        <div class="container fade-up delay-3">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="project-grid">
+                <div class="project-card glass-panel">
+                    <div class="project-header">
+                        <h3>fuzzies</h3>
+                        <span class="badge">
+                          <span class="badge-dot"></span>
+                          Rust
+                        </span>
+                    </div>
+                    <p class="project-desc">
+                        An easy-to-use Rust library for instant, typo-tolerant
+                        search. Takes the headache out of complex fuzzy lookups
+                        with a clean API that runs on both the backend and in
+                        the browser via WebAssembly.
+                    </p>
+                    <div class="project-footer">
+                        <a href="{base}/project/fuzzies" class="cta-button">
+                            Launch Fuzzies <span class="arrow">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section">
-        <h2 class="section-title">Tech Stack</h2>
-        <div class="tech-cli glass-panel">
-            <div class="cli-header">
-                <span class="dot stack red"></span>
-                <span class="dot stack yellow"></span>
-                <span class="dot stack green"></span>
+    <section id="stack" class="section">
+        <div class="container fade-up delay-4">
+            <div class="section-header">
+                <h2 class="section-title">Tech Stack</h2>
+                <div class="line"></div>
             </div>
-            <div class="cli-body">
-                {#each techStack as { category, techs }}
-                    <div class="cli-line">
-                        <span class="cli-prompt">~</span>
-                        <span class="cli-command">cat</span>
-                        {category.toLowerCase()}.txt
+
+            <div class="tech-layout">
+                <div class="tech-info">
+                    <h3>Tools I Build With</h3>
+                    <p>
+                        I mostly stick to strongly-typed languages like Rust and Go, along with tools like PostgreSQL and Docker,
+                        to build simple, reliable backend projects and developer tools.
+                    </p>
+                </div>
+                <div class="tech-cli glass-panel">
+                    <div class="cli-header">
+                        <span class="dot stack red"></span>
+                        <span class="dot stack yellow"></span>
+                        <span class="dot stack green"></span>
                     </div>
-                    <div class="cli-output">
-                        {techs.join(", ")}
+                    <div class="cli-body">
+                        {#each techStack as { category, techs }}
+                            <div class="cli-line">
+                                <span class="cli-prompt">haiqal@tsubasa:~$</span
+                                >
+                                <span class="cli-command">cat</span>
+                                {category.toLowerCase()}.txt
+                            </div>
+                            <div class="cli-output">
+                                {techs.join(" · ")}
+                            </div>
+                        {/each}
+                        <div class="cli-line">
+                            <span class="cli-prompt">haiqal@tsubasa:~$</span>
+                            <span class="cli-cursor"></span>
+                        </div>
                     </div>
-                {/each}
-                <div class="cli-line">
-                    <span class="cli-prompt">~</span>
-                    <span class="cli-cursor"></span>
                 </div>
             </div>
         </div>
@@ -129,19 +174,32 @@
 </main>
 
 <style>
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        width: 100%;
+    }
+
+    .portfolio-container {
+        position: relative;
+        z-index: 1;
+        padding-top: 100px;
+    }
+
     .ambient-glow {
         position: fixed;
-        top: -10vh;
-        right: -5vw;
-        width: 50vw;
-        height: 50vw;
-        background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-        opacity: 0.15;
-        filter: blur(80px);
+        top: -20vh;
+        right: -10vw;
+        width: 60vw;
+        height: 60vw;
+        background: radial-gradient(circle, var(--accent) 0%, transparent 60%);
+        opacity: 0.12;
+        filter: blur(100px);
         z-index: -1;
         pointer-events: none;
         border-radius: 50%;
-        animation: pulse-glow 10s ease-in-out infinite alternate;
+        animation: pulse-glow 12s ease-in-out infinite alternate;
     }
 
     @keyframes pulse-glow {
@@ -149,17 +207,45 @@
             transform: scale(1) translate(0, 0);
         }
         100% {
-            transform: scale(1.1) translate(-20px, 20px);
+            transform: scale(1.2) translate(-30px, 30px);
         }
     }
 
-    .portfolio-container {
-        position: relative;
-        z-index: 1;
+    .glass-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: var(--surface);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+        z-index: 100;
+        padding: 1rem 0;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
     }
 
-    .brand-nav {
-        margin-bottom: 3rem;
+    .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    .nav-link {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+        color: var(--accent);
     }
 
     .logo {
@@ -208,123 +294,184 @@
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .glass-panel:hover {
-        background: var(--surface-hover);
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-fly);
+    .hero-section {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        min-height: 70vh;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
     }
 
-    .hero {
-        padding: 3rem;
-        margin-bottom: 4rem;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-        font-weight: 500;
+    .hero-content h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-weight: 600;
         letter-spacing: -0.03em;
         margin-bottom: 0.5rem;
+        line-height: 1.1;
     }
 
     .subtitle {
         color: var(--text-muted);
         font-family: var(--font-mono);
-        font-size: 0.9rem;
+        font-size: 1rem;
         margin-bottom: 1.5rem;
         display: flex;
         align-items: center;
         gap: 0.5rem;
     }
 
+    .highlight {
+        color: var(--accent);
+        font-weight: 500;
+    }
+
     .dot {
         color: var(--accent);
-        opacity: 0.8;
+        opacity: 0.5;
     }
 
     .bio {
         font-size: 1.1rem;
         color: var(--text-main);
-        margin-bottom: 2rem;
-        max-width: 600px;
-        font-weight: 300;
-        line-height: 1.6;
+        margin-bottom: 2.5rem;
+        font-weight: 400;
+        line-height: 1.7;
+        opacity: 0.9;
     }
 
     .hero-links {
         display: flex;
-        gap: 1.5rem;
+        gap: 1rem;
+        flex-wrap: wrap;
     }
 
     .link {
-        color: var(--accent);
         text-decoration: none;
         font-weight: 500;
         font-size: 0.95rem;
-        position: relative;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .button-primary {
+        background: var(--accent);
+        color: white;
+        box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
+    }
+
+    .button-primary:hover {
+        background: #0369a1;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
+    }
+
+    .button-secondary {
+        background: var(--surface);
+        color: var(--text-main);
+        border: 1px solid var(--border);
+    }
+
+    .button-secondary:hover {
+        background: var(--surface-hover);
+        transform: translateY(-2px);
     }
 
     .icon-link {
         display: inline-flex;
         align-items: center;
-        gap: 0.4rem;
+        gap: 0.5rem;
     }
 
-    .icon-link svg {
-        color: currentColor;
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .icon-link:hover svg {
-        transform: translateY(-3px) scale(1.05);
-    }
-
-    .link::after {
-        content: "";
-        position: absolute;
+    .hero-visual {
+        position: relative;
         width: 100%;
-        transform: scaleX(0);
-        height: 1px;
-        bottom: -2px;
-        left: 0;
-        background-color: var(--accent);
-        transform-origin: bottom right;
-        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        aspect-ratio: 4/3;
     }
 
-    .link:hover::after {
-        transform: scaleX(1);
-        transform-origin: bottom left;
+    .profile-pic {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: relative;
+        z-index: 2;
+    }
+
+    .visual-accent {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        bottom: 10px;
+        left: 10px;
+        background: linear-gradient(140deg, transparent, var(--border));
+        border-radius: 16px;
+        z-index: 1;
+        transition: transform 0.4s ease;
+    }
+
+    .hero-visual:hover .visual-accent {
+        transform: translate(-5px, 5px);
+    }
+
+    .hero-visual:hover .profile-pic {
+        transform: translateY(-4px);
     }
 
     .section {
-        margin-bottom: 4rem;
+        padding: 6rem 0;
+    }
+
+    .alt-bg {
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(14, 165, 233, 0.03),
+            transparent
+        );
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
     }
 
     .section-title {
-        font-size: 0.9rem;
+        font-size: 1rem;
         text-transform: uppercase;
         letter-spacing: 0.15em;
-        color: var(--text-muted);
-        margin-bottom: 1.5rem;
-        font-weight: 500;
-        padding-left: 0.5rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
+        color: var(--accent);
+        font-weight: 600;
+        white-space: nowrap;
     }
 
-    .section-title::before {
-        content: "";
-        display: block;
-        width: 12px;
-        height: 2px;
-        background: var(--accent);
-        opacity: 0.5;
+    .line {
+        height: 1px;
+        flex-grow: 1;
+        background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
     }
 
     .project-card {
         padding: 2.5rem;
         cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .project-card:hover {
+        background: var(--surface-hover);
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-fly);
     }
 
     .project-header {
@@ -336,24 +483,45 @@
 
     .project-header h3 {
         font-size: 1.4rem;
-        font-weight: 500;
+        font-weight: 600;
+        color: var(--text-main);
     }
 
     .badge {
-        font-family: var(--font-mono);
-        font-size: 0.75rem;
-        background: rgba(2, 132, 199, 0.1);
-        color: var(--accent);
-        padding: 0.25rem 0.75rem;
-        border-radius: 99px;
-        border: 1px solid rgba(2, 132, 199, 0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.75rem;
+      border-radius: 99px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+      transition: all 0.3s ease;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .project-card:hover .badge {
+      background: #ffffff;
+      border-color: var(--accent);
     }
 
     .project-desc {
         color: var(--text-muted);
-        font-weight: 300;
-        margin-bottom: 2rem;
+        font-weight: 400;
+        margin-bottom: 2.5rem;
         line-height: 1.6;
+        flex-grow: 1;
     }
 
     .cta-button {
@@ -362,7 +530,7 @@
         gap: 0.5rem;
         color: var(--accent);
         text-decoration: none;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 0.95rem;
     }
 
@@ -374,24 +542,46 @@
         transform: translateX(4px);
     }
 
+    .tech-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .tech-info h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    .tech-info p {
+        color: var(--text-muted);
+        line-height: 1.6;
+    }
+
     .tech-cli {
         font-family: var(--font-mono);
         overflow: hidden;
     }
 
+    .tech-cli:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-fly);
+    }
+
     .cli-header {
-        background: rgba(0, 0, 0, 0.2);
-        padding: 0.75rem 1rem;
+        background: rgba(0, 0, 0, 0.05);
+        padding: 1rem 1.5rem;
         display: flex;
         gap: 0.5rem;
         border-bottom: 1px solid var(--border);
     }
 
     .dot.stack {
-        height: 15px;
-        width: 15px;
+        height: 12px;
+        width: 12px;
         border-radius: 50%;
-        opacity: 0.5;
     }
     .dot.stack.red {
         background: #ff5f56;
@@ -404,7 +594,7 @@
     }
 
     .cli-body {
-        padding: 1.5rem;
+        padding: 2rem;
         font-size: 0.9rem;
     }
 
@@ -414,11 +604,12 @@
         display: flex;
         gap: 0.75rem;
         align-items: center;
+        flex-wrap: wrap;
     }
 
     .cli-prompt {
         color: var(--accent);
-        font-weight: bold;
+        font-weight: 500;
     }
 
     .cli-command {
@@ -427,9 +618,9 @@
 
     .cli-output {
         color: var(--text-main);
-        margin-bottom: 1.5rem;
-        padding-left: 1.5rem;
-        opacity: 0.9;
+        margin-bottom: 1.75rem;
+        padding-left: 0;
+        font-weight: 500;
     }
 
     .cli-cursor {
@@ -447,6 +638,69 @@
         }
         50% {
             opacity: 0;
+        }
+    }
+
+    .fade-in {
+        animation: fadeIn 1s ease forwards;
+    }
+
+    .fade-up {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .delay-1 {
+        animation-delay: 0.1s;
+    }
+    .delay-2 {
+        animation-delay: 0.3s;
+    }
+    .delay-3 {
+        animation-delay: 0.5s;
+    }
+    .delay-4 {
+        animation-delay: 0.7s;
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 900px) {
+        .hero-section {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 3rem;
+        }
+
+        .subtitle {
+            justify-content: center;
+        }
+
+        .hero-links {
+            justify-content: center;
+        }
+
+        .hero-visual {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .tech-layout {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            text-align: center;
         }
     }
 </style>
