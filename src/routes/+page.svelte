@@ -38,7 +38,7 @@
         <div class="hero-content fade-up delay-1">
             <h1>{name}</h1>
             <p class="subtitle">
-                <span class="highlight">{role}</span> <span class="dot">·</span>
+                <span class="highlight">{role}</span> <span class="dot dot-mobile">·</span>
                 {location}
             </p>
             <p class="bio">
@@ -685,7 +685,13 @@
         }
 
         .subtitle {
-            justify-content: center;
+                flex-direction: column;
+                gap: 0.15rem;
+                align-items: center;
+            }
+
+        .dot-mobile {
+            display: none;
         }
 
         .hero-links {
