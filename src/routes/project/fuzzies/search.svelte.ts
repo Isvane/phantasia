@@ -21,7 +21,7 @@ export class FuzzySearchEngine {
       return [];
     }
     try {
-      return this.dict.search(this.query.trim(), 5, 2) as SearchResult[];
+      return this.dict.search(this.query.trim().toLowerCase(), 5, 2) as SearchResult[];
     } catch (e) {
       console.error("Search error:", e);
       return [];
