@@ -38,13 +38,16 @@
         <div class="hero-content fade-up delay-1">
             <h1>{name}</h1>
             <p class="subtitle">
-                <span class="highlight">{role}</span> <span class="dot dot-mobile">·</span>
+                <span class="highlight">{role}</span>
+                <span class="dot dot-mobile">·</span>
                 {location}
             </p>
             <p class="bio">
-                3rd-year CS student building developer tools and backend projects.
-                I got a relatively late start to coding, so I prioritize hands-on building, shipping practical software,
-                and contributing to open source over studying pure theory or grinding LeetCode.
+                3rd-year CS student building developer tools and backend
+                projects. I got a relatively late start to coding, so I
+                prioritize hands-on building, shipping practical software, and
+                contributing to open source over studying pure theory or
+                grinding LeetCode.
             </p>
             <div class="hero-links">
                 <a href="mailto:{email}" class="link icon-link button-primary">
@@ -109,8 +112,8 @@
                     <div class="project-header">
                         <h3>fuzzies</h3>
                         <span class="badge">
-                          <span class="badge-dot"></span>
-                          Rust
+                            <span class="badge-dot"></span>
+                            Rust
                         </span>
                     </div>
                     <p class="project-desc">
@@ -140,8 +143,10 @@
                 <div class="tech-info">
                     <h3>Tools I Build With</h3>
                     <p>
-                        I mostly stick to strongly-typed languages like Rust and Go, along with tools like PostgreSQL and Docker,
-                        to build simple, reliable backend projects and developer tools.
+                        I mostly stick to strongly-typed languages like Rust and
+                        Go, along with tools like PostgreSQL and Docker, to
+                        build simple, reliable backend projects and developer
+                        tools.
                     </p>
                 </div>
                 <div class="tech-cli glass-panel">
@@ -174,41 +179,10 @@
 </main>
 
 <style>
-    .container {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-        width: 100%;
-    }
-
     .portfolio-container {
         position: relative;
         z-index: 1;
         padding-top: 100px;
-    }
-
-    .ambient-glow {
-        position: fixed;
-        top: -20vh;
-        right: -10vw;
-        width: 60vw;
-        height: 60vw;
-        background: radial-gradient(circle, var(--accent) 0%, transparent 60%);
-        opacity: 0.12;
-        filter: blur(100px);
-        z-index: -1;
-        pointer-events: none;
-        border-radius: 50%;
-        animation: pulse-glow 12s ease-in-out infinite alternate;
-    }
-
-    @keyframes pulse-glow {
-        0% {
-            transform: scale(1) translate(0, 0);
-        }
-        100% {
-            transform: scale(1.2) translate(-30px, 30px);
-        }
     }
 
     .glass-nav {
@@ -282,16 +256,6 @@
         75% {
             transform: rotate(-1deg) translateY(-1px) skewX(1deg);
         }
-    }
-
-    .glass-panel {
-        background: var(--surface);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        box-shadow: var(--shadow-rest);
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .hero-section {
@@ -432,28 +396,6 @@
         );
     }
 
-    .section-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 3rem;
-    }
-
-    .section-title {
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        color: var(--accent);
-        font-weight: 600;
-        white-space: nowrap;
-    }
-
-    .line {
-        height: 1px;
-        flex-grow: 1;
-        background: linear-gradient(90deg, var(--border), transparent);
-    }
-
     .project-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -487,33 +429,9 @@
         color: var(--text-main);
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.8);
-      border: 1px solid var(--border);
-      padding: 0.3rem 0.75rem;
-      border-radius: 99px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-      transition: all 0.3s ease;
-    }
-
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: var(--accent);
-      box-shadow: 0 0 8px var(--accent);
-    }
-
     .project-card:hover .badge {
-      background: #ffffff;
-      border-color: var(--accent);
+        background: #ffffff;
+        border-color: var(--accent);
     }
 
     .project-desc {
@@ -641,42 +559,6 @@
         }
     }
 
-    .fade-in {
-        animation: fadeIn 1s ease forwards;
-    }
-
-    .fade-up {
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    .delay-1 {
-        animation-delay: 0.1s;
-    }
-    .delay-2 {
-        animation-delay: 0.3s;
-    }
-    .delay-3 {
-        animation-delay: 0.5s;
-    }
-    .delay-4 {
-        animation-delay: 0.7s;
-    }
-
-    @keyframes fadeIn {
-        to {
-            opacity: 1;
-        }
-    }
-
-    @keyframes fadeUp {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
     @media (max-width: 900px) {
         .hero-section {
             grid-template-columns: 1fr;
@@ -685,10 +567,10 @@
         }
 
         .subtitle {
-                flex-direction: column;
-                gap: 0.15rem;
-                align-items: center;
-            }
+            flex-direction: column;
+            gap: 0.15rem;
+            align-items: center;
+        }
 
         .dot-mobile {
             display: none;
