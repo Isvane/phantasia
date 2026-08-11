@@ -14,6 +14,23 @@
         { category: "Infra", techs: ["Docker", "Linux", "Git"] },
         { category: "Learning", techs: ["WebAssembly", "Svelte"] },
     ];
+
+    const contributions = [
+        {
+            repo: "tower-rs/tower-http",
+            title: "Fix trailing slash behavior in file serving",
+            desc: "Updated `ServeDir` to return 404 for file paths with trailing slashes, bringing behavior in line with standard web server expectations while preserving directory index handling.",
+            link: "https://github.com/tower-rs/tower-http/pull/678",
+            status: "Merged",
+        },
+        {
+            repo: "lumen-oss/lux",
+            title: "Support directory targets for lx-lint",
+            desc: "Extracted shared path classification tools and implemented root up-tree workspace lookups to allow linting specific directories and loose files.",
+            link: "https://github.com/lumen-oss/lux/pull/1656",
+            status: "Merged",
+        },
+    ];
 </script>
 
 <div class="ambient-glow"></div>
@@ -29,6 +46,7 @@
         <div class="nav-links">
             <a href="#projects" class="nav-link">Projects</a>
             <a href="#stack" class="nav-link">Stack</a>
+            <a href="#opensource" class="nav-link">Open Source</a>
         </div>
     </div>
 </nav>
@@ -117,7 +135,7 @@
                         </span>
                     </div>
                     <p class="project-desc">
-                        An easy-to-use Rust library for instant, typo-tolerant
+                        Fast and easy-to-use Rust library for instant, typo-tolerant
                         search. Takes the headache out of complex fuzzy lookups
                         with a clean API that runs on both the backend and in
                         the browser via WebAssembly.
@@ -176,9 +194,65 @@
             </div>
         </div>
     </section>
+
+    <section id="opensource" class="section alt-bg">
+        <div class="container fade-up delay-5">
+            <div class="section-header">
+                <h2 class="section-title">Open Source & PRs</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="project-grid">
+                {#each contributions as pr}
+                    <a
+                        href={pr.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        class="project-card glass-panel pr-card"
+                    >
+                        <div class="project-header">
+                            <h3>{pr.repo}</h3>
+                            <span class="badge pr-badge">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="14"
+                                    height="14"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <circle cx="18" cy="18" r="3"></circle>
+                                    <circle cx="6" cy="6" r="3"></circle>
+                                    <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+                                    <line x1="6" y1="9" x2="6" y2="21"></line>
+                                </svg>
+                                {pr.status}
+                            </span>
+                        </div>
+                        <h4 class="pr-title">{pr.title}</h4>
+                        <p class="project-desc">
+                            {pr.desc}
+                        </p>
+                        <div class="project-footer">
+                            <span class="cta-button">
+                                View Pull Request <span class="arrow"
+                                    >&rarr;</span
+                                >
+                            </span>
+                        </div>
+                    </a>
+                {/each}
+            </div>
+        </div>
+    </section>
 </main>
 
 <style>
+    /* ... (Keep ALL your existing styles unchanged, and add these at the very bottom) ... */
+
     .portfolio-container {
         position: relative;
         z-index: 1;
@@ -590,5 +664,30 @@
             gap: 2rem;
             text-align: center;
         }
+    }
+
+    .delay-5 {
+        animation-delay: 0.9s;
+    }
+
+    .pr-card {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .pr-title {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--text-main);
+        margin-bottom: 0.5rem;
+    }
+
+    .pr-badge {
+        color: #10b981;
+        border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .pr-card:hover .pr-badge {
+        border-color: #10b981;
     }
 </style>
