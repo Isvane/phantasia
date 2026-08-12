@@ -38,9 +38,9 @@
 <nav class="brand-nav glass-nav fade-in">
     <div class="nav-content container">
         <span class="logo">
-            Tsubasa
-            <span class="kanji-wrapper">
-                <span class="kanji">翼</span>
+            Phantasia
+            <span class="accent-wrapper">
+                <span class="accent-icon">✦</span>
             </span>
         </span>
         <div class="nav-links">
@@ -176,7 +176,7 @@
                     <div class="cli-body">
                         {#each techStack as { category, techs }}
                             <div class="cli-line">
-                                <span class="cli-prompt">haiqal@tsubasa:~$</span
+                                <span class="cli-prompt">haiqal@phantasia:~$</span
                                 >
                                 <span class="cli-command">cat</span>
                                 {category.toLowerCase()}.txt
@@ -186,7 +186,7 @@
                             </div>
                         {/each}
                         <div class="cli-line">
-                            <span class="cli-prompt">haiqal@tsubasa:~$</span>
+                            <span class="cli-prompt">haiqal@phantasia:~$</span>
                             <span class="cli-cursor"></span>
                         </div>
                     </div>
@@ -305,15 +305,14 @@
         gap: 0.5rem;
     }
 
-    .kanji-wrapper {
+    .accent-wrapper {
         display: inline-flex;
         perspective: 100px;
     }
 
-    .kanji {
+    .accent-icon {
         color: var(--accent);
-        font-size: 1.5rem;
-        font-weight: 300;
+        font-size: 1.25rem;
         display: inline-block;
         transform-origin: bottom left;
         animation: breeze 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;

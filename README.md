@@ -1,4 +1,4 @@
-# Tsubasa 翼
+# Phantasia 翼
 
 ```bash
 # Install dependencies

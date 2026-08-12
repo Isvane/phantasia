@@ -17,7 +17,7 @@ export default defineConfig(({ command }) => ({
                 strict: true
             }),
             paths: {
-                base: command === 'serve' ? '' : '/tsubasa'
+                base: command === 'serve' ? '' : '/phantasia'
             }
         })
     ],
