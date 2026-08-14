@@ -74,23 +74,67 @@
     </div>
 
     <section class="info-card glass-panel fade-up delay-2">
-        <div class="info-content">
+        <div class="info-header">
             <h2>How this works</h2>
-            <p>
-                This demo runs entirely locally in your browser.
-                It uses Rust compiled to WebAssembly, so there are zero server calls while you type.
-            </p>
-            <p>
-                Under the hood, it pairs Finite State Transducers (FSTs) with Levenshtein Automata to handle typos,
-                and fuzzy matching in memory without choking the main thread.
-            </p>
-            <p>
-                The dictionary built for this demo contains around 106k words.
-                The trade-off is a slightly larger initial download (~300 KB) in exchange for instant lookups afterward.
-            </p>
-            <p>
-                A smaller word list would've saved bandwidth, but I wanted to see how well this crate handles a larger dataset in real time without dropping frames.
-            </p>
+            <span class="tech-pill">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+                Rust + WASM
+            </span>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-item">
+                <span class="metric-value">106k</span>
+                <span class="metric-label">Words</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-item">
+                <span class="metric-value">0</span>
+                <span class="metric-label">Server Calls</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-item">
+                <span class="metric-value">~300 KB</span>
+                <span class="metric-label">Bundle Size</span>
+            </div>
+        </div>
+
+        <div class="features-list">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Runs Entirely in Browser</h3>
+                    <p>
+                        This demo runs Rust compiled to WebAssembly locally. Once loaded, typing generates responses instantly without making any network requests.
+                    </p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Typo Tolerance</h3>
+                    <p>
+                        Under the hood, it pairs Finite State Transducers (FSTs) with Levenshtein Automata to catch typos quickly without causing UI lag.
+                    </p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Trade-off</h3>
+                    <p>
+                        Indexing ~106k words adds a small upfront download (~300 KB), but in exchange, searches feel instantaneous afterward.
+                    </p>
+                </div>
+            </div>
         </div>
 
         <div class="info-footer">
@@ -231,25 +275,105 @@
         padding: 1.75rem;
         display: flex;
         flex-direction: column;
-        gap: 1.25rem;
+        gap: 1.5rem;
     }
 
-    .info-content h2 {
-        font-size: 1.1rem;
+    .info-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .info-header h2 {
+        font-size: 1.2rem;
         font-weight: 600;
         color: var(--text-main);
-        margin-bottom: 0.5rem;
+        margin: 0;
     }
 
-    .info-content p {
+    .tech-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.25rem 0.65rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--accent, #0ea5e9);
+        background: rgba(14, 165, 233, 0.1);
+        border: 1px solid rgba(14, 165, 233, 0.25);
+        border-radius: 9999px;
+    }
+
+    .metrics-grid {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0.85rem 1rem;
+        background: rgba(255, 255, 255, 0.3);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+    }
+
+    .metric-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .metric-value {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--text-main);
+    }
+
+    .metric-label {
+        font-size: 0.75rem;
         color: var(--text-muted);
-        font-size: 0.95rem;
-        line-height: 1.6;
-        margin-bottom: 0.5rem;
     }
 
-    .info-content p:last-child {
-        margin-bottom: 0;
+    .metric-divider {
+        width: 1px;
+        height: 28px;
+        background: var(--border);
+    }
+
+    .features-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+    }
+
+    .feature-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.85rem;
+    }
+
+    .feature-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 34px;
+        height: 34px;
+        border-radius: 0.5rem;
+        background: rgba(14, 165, 233, 0.1);
+        color: var(--accent, #0ea5e9);
+        margin-top: 0.1rem;
+    }
+
+    .feature-content h3 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-main);
+        margin: 0 0 0.25rem 0;
+    }
+
+    .feature-content p {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+        margin: 0;
     }
 
     .info-footer {
