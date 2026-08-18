@@ -101,7 +101,7 @@
 
         <div class="features-list">
             <div class="feature-item">
-                <div class="feature-icon">
+                <div class="feature-icon purple">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                 </div>
                 <div class="feature-content">
@@ -113,7 +113,7 @@
             </div>
 
             <div class="feature-item">
-                <div class="feature-icon">
+                <div class="feature-icon red">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
                 </div>
                 <div class="feature-content">
@@ -125,7 +125,7 @@
             </div>
 
             <div class="feature-item">
-                <div class="feature-icon">
+                <div class="feature-icon purple">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
                 </div>
                 <div class="feature-content">
@@ -170,9 +170,13 @@
         align-items: center;
         gap: 0.5rem;
         text-decoration: none;
-        color: var(--text-main);
+        color: var(--text-muted);
         font-weight: 500;
-        transition: color 0.2s ease;
+        transition: all 0.3s ease;
+    }
+    .back-link:hover {
+        color: var(--accent);
+        text-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
     }
 
     .search-page-container {
@@ -189,7 +193,8 @@
     .input-wrapper {
         position: relative;
         border-bottom: 1px solid var(--border);
-        background: rgba(255, 255, 255, 0.4);
+        background: rgba(10, 5, 20, 0.4);
+        transition: background 0.3s ease;
     }
 
     .search-icon {
@@ -197,7 +202,8 @@
         left: 1.5rem;
         top: 50%;
         transform: translateY(-50%);
-        color: var(--text-muted);
+        color: var(--accent);
+        opacity: 0.7;
     }
 
     input {
@@ -209,17 +215,32 @@
         background: transparent;
         border: none;
         outline: none;
-        transition: background 0.3s ease;
+        transition: all 0.3s ease;
     }
 
-    input::placeholder { color: var(--text-muted); opacity: 0.6; }
-    input:focus { background: rgba(255, 255, 255, 0.8); }
+    input::placeholder { color: var(--text-muted); opacity: 0.5; }
+    input:focus { background: rgba(35, 20, 50, 0.4); }
 
     .results-container {
         background: transparent;
         min-height: 100px;
         max-height: 500px;
         overflow-y: auto;
+    }
+
+    /* Custom Scrollbar for dark theme */
+    .results-container::-webkit-scrollbar {
+        width: 6px;
+    }
+    .results-container::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.2);
+    }
+    .results-container::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 4px;
+    }
+    .results-container::-webkit-scrollbar-thumb:hover {
+        background: var(--accent);
     }
 
     .result-list {
@@ -231,20 +252,23 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid rgba(14, 165, 233, 0.1);
-        transition: background 0.2s ease, padding-left 0.2s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        border-left: 2px solid transparent;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .result-item:last-child { border-bottom: none; }
 
     .result-item:hover {
         background: var(--surface-hover);
+        border-left-color: var(--accent);
         padding-left: 2rem;
     }
 
     .item-key {
         font-weight: 500;
         font-size: 1.1rem;
+        color: var(--text-main);
     }
 
     .empty-state, .loading-state {
@@ -294,22 +318,24 @@
     .tech-pill {
         display: inline-flex;
         align-items: center;
-        gap: 0.35rem;
-        padding: 0.25rem 0.65rem;
+        gap: 0.45rem;
+        padding: 0.35rem 0.85rem;
         font-size: 0.75rem;
+        font-family: var(--font-mono);
         font-weight: 600;
-        color: var(--accent, #0ea5e9);
-        background: rgba(14, 165, 233, 0.1);
-        border: 1px solid rgba(14, 165, 233, 0.25);
+        color: var(--accent);
+        background: rgba(168, 85, 247, 0.15);
+        border: 1px solid var(--border);
         border-radius: 9999px;
+        box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
     }
 
     .metrics-grid {
         display: flex;
         align-items: center;
         justify-content: space-around;
-        padding: 0.85rem 1rem;
-        background: rgba(255, 255, 255, 0.3);
+        padding: 1rem;
+        background: rgba(10, 5, 20, 0.4);
         border: 1px solid var(--border);
         border-radius: 0.75rem;
     }
@@ -321,32 +347,36 @@
     }
 
     .metric-value {
-        font-size: 1.15rem;
+        font-size: 1.25rem;
+        font-family: var(--font-mono);
         font-weight: 700;
-        color: var(--text-main);
+        color: var(--accent);
     }
 
     .metric-label {
         font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
         color: var(--text-muted);
+        margin-top: 0.25rem;
     }
 
     .metric-divider {
         width: 1px;
-        height: 28px;
+        height: 32px;
         background: var(--border);
     }
 
     .features-list {
         display: flex;
         flex-direction: column;
-        gap: 1.1rem;
+        gap: 1.25rem;
     }
 
     .feature-item {
         display: flex;
         align-items: flex-start;
-        gap: 0.85rem;
+        gap: 1rem;
     }
 
     .feature-icon {
@@ -354,30 +384,40 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        width: 34px;
-        height: 34px;
-        border-radius: 0.5rem;
-        background: rgba(14, 165, 233, 0.1);
-        color: var(--accent, #0ea5e9);
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
         margin-top: 0.1rem;
     }
 
+    .feature-icon.purple {
+        background: rgba(168, 85, 247, 0.15);
+        color: var(--accent);
+        border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
+    .feature-icon.red {
+        background: rgba(225, 29, 72, 0.15);
+        color: var(--accent-red);
+        border: 1px solid rgba(225, 29, 72, 0.3);
+    }
+
     .feature-content h3 {
-        font-size: 0.95rem;
+        font-size: 1rem;
         font-weight: 600;
         color: var(--text-main);
-        margin: 0 0 0.25rem 0;
+        margin: 0 0 0.35rem 0;
     }
 
     .feature-content p {
-        font-size: 0.875rem;
+        font-size: 0.9rem;
         color: var(--text-muted);
-        line-height: 1.5;
+        line-height: 1.6;
         margin: 0;
     }
 
     .info-footer {
-        padding-top: 1rem;
+        padding-top: 1.25rem;
         border-top: 1px solid var(--border);
     }
 
@@ -389,7 +429,7 @@
         text-decoration: none;
         font-size: 0.9rem;
         font-weight: 500;
-        transition: color 0.2s ease;
+        transition: color 0.3s ease;
     }
 
     .github-link:hover {
@@ -397,10 +437,11 @@
     }
 
     .github-link .arrow {
-        transition: transform 0.2s ease;
+        transition: transform 0.3s ease;
     }
 
     .github-link:hover .arrow {
-        transform: translateX(3px);
+        transform: translateX(4px);
+        color: var(--accent-red);
     }
 </style>

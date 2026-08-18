@@ -1,6 +1,6 @@
 <script lang="ts">
     import { base } from "$app/paths";
-    import profile from "$lib/assets/profile.jpeg";
+    import profile from "$lib/assets/profile.jpg";
 
     const name = "Haiqal Aly Hazamy";
     const role = "Backend & Systems Engineer";
@@ -69,43 +69,16 @@
             </p>
             <div class="hero-links">
                 <a href="mailto:{email}" class="link icon-link button-primary">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect width="20" height="16" x="2" y="4" rx="2" />
                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                     </svg>
                     Email Me
                 </a>
 
-                <a
-                    href={github}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="link icon-link button-secondary"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <path
-                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
-                        />
+                <a href={github} target="_blank" rel="noreferrer" class="link icon-link button-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
                         <path d="M9 18c-4.51 2-5-2-7-2" />
                     </svg>
                     GitHub
@@ -176,8 +149,7 @@
                     <div class="cli-body">
                         {#each techStack as { category, techs }}
                             <div class="cli-line">
-                                <span class="cli-prompt">haiqal@phantasia:~$</span
-                                >
+                                <span class="cli-prompt">haiqal@phantasia:~$</span>
                                 <span class="cli-command">cat</span>
                                 {category.toLowerCase()}.txt
                             </div>
@@ -213,17 +185,7 @@
                         <div class="project-header">
                             <h3>{pr.repo}</h3>
                             <span class="badge pr-badge">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="14"
-                                    height="14"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="18" cy="18" r="3"></circle>
                                     <circle cx="6" cy="6" r="3"></circle>
                                     <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
@@ -238,9 +200,7 @@
                         </p>
                         <div class="project-footer">
                             <span class="cta-button">
-                                View Pull Request <span class="arrow"
-                                    >&rarr;</span
-                                >
+                                View Pull Request <span class="arrow">&rarr;</span>
                             </span>
                         </div>
                     </a>
@@ -251,8 +211,6 @@
 </main>
 
 <style>
-    /* ... (Keep ALL your existing styles unchanged, and add these at the very bottom) ... */
-
     .portfolio-container {
         position: relative;
         z-index: 1;
@@ -270,7 +228,6 @@
         border-bottom: 1px solid var(--border);
         z-index: 100;
         padding: 1rem 0;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
     }
 
     .nav-content {
@@ -293,7 +250,7 @@
     }
 
     .nav-link:hover {
-        color: var(--accent);
+        color: var(--text-main);
     }
 
     .logo {
@@ -303,6 +260,10 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        background: linear-gradient(135deg, var(--text-main), var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 
     .accent-wrapper {
@@ -314,21 +275,13 @@
         color: var(--accent);
         font-size: 1.25rem;
         display: inline-block;
-        transform-origin: bottom left;
-        animation: breeze 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        transform-origin: center;
+        animation: ethereal-float 4s ease-in-out infinite;
     }
 
-    @keyframes breeze {
-        0%,
-        100% {
-            transform: rotate(0deg) translateY(0) skewX(0deg);
-        }
-        25% {
-            transform: rotate(3deg) translateY(-2px) skewX(-2deg);
-        }
-        75% {
-            transform: rotate(-1deg) translateY(-1px) skewX(1deg);
-        }
+    @keyframes ethereal-float {
+        0%, 100% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0.8; }
+        50% { transform: translateY(-3px) scale(1.1) rotate(5deg); opacity: 1; text-shadow: 0 0 10px var(--accent); }
     }
 
     .hero-section {
@@ -365,17 +318,16 @@
     }
 
     .dot {
-        color: var(--accent);
-        opacity: 0.5;
+        color: var(--accent-red);
+        opacity: 0.7;
     }
 
     .bio {
         font-size: 1.1rem;
-        color: var(--text-main);
+        color: var(--text-muted);
         margin-bottom: 2.5rem;
         font-weight: 400;
         line-height: 1.7;
-        opacity: 0.9;
     }
 
     .hero-links {
@@ -394,25 +346,27 @@
     }
 
     .button-primary {
-        background: var(--accent);
+        background: linear-gradient(135deg, var(--accent), var(--accent-red));
         color: white;
-        box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
+        box-shadow: 0 4px 15px rgba(168, 85, 247, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .button-primary:hover {
-        background: #0369a1;
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
+        box-shadow: 0 6px 20px rgba(225, 29, 72, 0.35);
+        filter: brightness(1.1);
     }
 
     .button-secondary {
-        background: var(--surface);
+        background: rgba(255, 255, 255, 0.05);
         color: var(--text-main);
         border: 1px solid var(--border);
     }
 
     .button-secondary:hover {
-        background: var(--surface-hover);
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--accent);
         transform: translateY(-2px);
     }
 
@@ -442,14 +396,17 @@
         right: -10px;
         bottom: 10px;
         left: 10px;
-        background: linear-gradient(140deg, transparent, var(--border));
+        background: linear-gradient(140deg, var(--accent-red), var(--accent));
         border-radius: 16px;
         z-index: 1;
         transition: transform 0.4s ease;
+        opacity: 0.5;
+        filter: blur(2px);
     }
 
     .hero-visual:hover .visual-accent {
         transform: translate(-5px, 5px);
+        filter: blur(4px);
     }
 
     .hero-visual:hover .profile-pic {
@@ -464,7 +421,8 @@
         background: linear-gradient(
             to bottom,
             transparent,
-            rgba(14, 165, 233, 0.03),
+            rgba(168, 85, 247, 0.03),
+            rgba(225, 29, 72, 0.02),
             transparent
         );
     }
@@ -487,6 +445,7 @@
         background: var(--surface-hover);
         transform: translateY(-6px);
         box-shadow: var(--shadow-fly);
+        border-color: var(--accent);
     }
 
     .project-header {
@@ -503,7 +462,7 @@
     }
 
     .project-card:hover .badge {
-        background: #ffffff;
+        background: rgba(168, 85, 247, 0.15);
         border-color: var(--accent);
     }
 
@@ -531,6 +490,7 @@
 
     .project-card:hover .arrow {
         transform: translateX(4px);
+        color: var(--accent-red);
     }
 
     .tech-layout {
@@ -554,19 +514,21 @@
     .tech-cli {
         font-family: var(--font-mono);
         overflow: hidden;
+        background: rgba(5, 2, 10, 0.7);
     }
 
     .tech-cli:hover {
         transform: translateY(-4px);
         box-shadow: var(--shadow-fly);
+        border-color: var(--border);
     }
 
     .cli-header {
-        background: rgba(0, 0, 0, 0.05);
+        background: rgba(0, 0, 0, 0.4);
         padding: 1rem 1.5rem;
         display: flex;
         gap: 0.5rem;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .dot.stack {
@@ -574,15 +536,9 @@
         width: 12px;
         border-radius: 50%;
     }
-    .dot.stack.red {
-        background: #ff5f56;
-    }
-    .dot.stack.yellow {
-        background: #ffbd2e;
-    }
-    .dot.stack.green {
-        background: #27c93f;
-    }
+    .dot.stack.red { background: #ff5f56; }
+    .dot.stack.yellow { background: #ffbd2e; }
+    .dot.stack.green { background: #27c93f; }
 
     .cli-body {
         padding: 2rem;
@@ -604,7 +560,7 @@
     }
 
     .cli-command {
-        color: var(--text-main);
+        color: var(--accent-red);
     }
 
     .cli-output {
@@ -623,13 +579,8 @@
     }
 
     @keyframes blink {
-        0%,
-        100% {
-            opacity: 1;
-        }
-        50% {
-            opacity: 0;
-        }
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
     }
 
     @media (max-width: 900px) {
@@ -645,13 +596,8 @@
             align-items: center;
         }
 
-        .dot-mobile {
-            display: none;
-        }
-
-        .hero-links {
-            justify-content: center;
-        }
+        .dot-mobile { display: none; }
+        .hero-links { justify-content: center; }
 
         .hero-visual {
             max-width: 500px;
@@ -665,9 +611,7 @@
         }
     }
 
-    .delay-5 {
-        animation-delay: 0.9s;
-    }
+    .delay-5 { animation-delay: 0.9s; }
 
     .pr-card {
         text-decoration: none;
@@ -682,11 +626,12 @@
     }
 
     .pr-badge {
-        color: #10b981;
-        border-color: rgba(16, 185, 129, 0.2);
+        color: #34d399;
+        border-color: rgba(52, 211, 153, 0.2);
     }
 
     .pr-card:hover .pr-badge {
-        border-color: #10b981;
+        border-color: #34d399;
+        background: rgba(52, 211, 153, 0.1);
     }
 </style>
