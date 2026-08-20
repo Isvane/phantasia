@@ -1,4 +1,6 @@
-# Phantasia 翼
+# Phantasia
+
+![Homepage](assets/img/homepage.png)
 
 ```bash
 # Install dependencies
