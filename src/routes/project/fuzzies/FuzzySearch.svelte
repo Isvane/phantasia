@@ -4,7 +4,6 @@
     import { FuzzySearchEngine } from './search.svelte';
 
     const searcher = new FuzzySearchEngine();
-
     const GITHUB_REPO_URL = "https://github.com/Isvane/fuzzies";
 
     onMount(() => {
@@ -12,235 +11,292 @@
     });
 </script>
 
-<div class="ambient-glow"></div>
+<svelte:head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=Fira+Code&display=swap" rel="stylesheet">
+</svelte:head>
 
-<nav class="brand-nav glass-nav fade-in">
-    <div class="nav-content container">
-        <a href="{base}/" class="logo back-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-            Back to Home
-        </a>
-    </div>
+<nav class="top-nav container">
+    <a href="{base}/" class="btn-back">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to Home
+    </a>
 </nav>
 
-<main class="search-page-container container">
-    <div class="fade-up">
-        <div class="section-header">
-            <h1 class="section-title">Fuzzies Wasm Demo</h1>
-            <div class="line"></div>
-        </div>
+<main class="container">
+    <header class="page-header">
+        <span class="mono-badge">● PROJECT // RUST // WASM</span>
+        <h1 class="page-title">fuzzies</h1>
+        <p class="page-desc">
+            Fast, typo-tolerant search library built with Rust and compiled to WebAssembly.
+            Runs zero-latency queries directly inside the browser.
+        </p>
+    </header>
+
+    <div class="bento-grid">
+        <article class="bento-card col-span-2 demo-card">
+            <h3 class="card-title accent-text">Interactive Demo</h3>
+
+            {#if !searcher.isReady}
+                <div class="loading-state">
+                    <span class="spinner"></span>
+                    <span>Initializing WebAssembly engine...</span>
+                </div>
+            {:else}
+                <div class="input-wrapper">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </svg>
+                    <input
+                        type="text"
+                        bind:value={searcher.query}
+                        placeholder="Type to test fuzzy match (e.g. 'baxana', 'algoritm')..."
+                    />
+                </div>
+
+                <div class="results-container">
+                    {#if searcher.query.trim() && searcher.result.length === 0}
+                        <div class="empty-state">
+                            No matches found for "{searcher.query}"
+                        </div>
+                    {/if}
+
+                    <ul class="result-list">
+                        {#each searcher.result as item (item.key)}
+                            <li class="result-item">
+                                <span class="item-key">{item.key}</span>
+                                <span class="badge {item.is_exact ? 'exact' : 'fuzzy'}">
+                                    {#if item.is_exact}
+                                        <span class="dot green"></span> Exact Match
+                                    {:else}
+                                        Dist: {item.distance}
+                                    {/if}
+                                </span>
+                            </li>
+                        {/each}
+                    </ul>
+                </div>
+            {/if}
+        </article>
+
+        <article class="bento-card col-span-1 metrics-card">
+            <h3 class="card-title">Benchmarks</h3>
+            <div class="metrics-stack">
+                <div class="metric-item">
+                    <span class="metric-value">106,000+</span>
+                    <span class="metric-label">Indexed English Words</span>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item">
+                    <span class="metric-value">0 ms</span>
+                    <span class="metric-label">Server Latency (In-Memory)</span>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item">
+                    <span class="metric-value">~695 KB</span>
+                    <span class="metric-label">Total Assets (395KB WASM + 300KB FST)</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="bento-card col-span-3 system-card">
+            <div class="system-header">
+                <h3 class="card-title">How It Works</h3>
+                <a href={GITHUB_REPO_URL} target="_blank" rel="noreferrer" class="btn btn-secondary btn-sm">
+                    View Source Code <span class="arrow">&rarr;</span>
+                </a>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <span class="feature-code">01 // EXECUTION</span>
+                    <h4>Client-Side Processing</h4>
+                    <p>
+                        Compiled directly from Rust via <code>wasm-bindgen</code>. Once loaded, queries execute locally without sending network requests to a server.
+                    </p>
+                </div>
+
+                <div class="feature-box">
+                    <span class="feature-code">02 // DATA STRUCTURE</span>
+                    <h4>Compressed FST Index</h4>
+                    <p>
+                        Embeds ~106,000 dictionary words into a compact 300 KB Finite State Transducer,
+                        allowing fast Levenshtein traversal with minimal client memory overhead.
+                    </p>
+                </div>
+
+                <div class="feature-box">
+                    <span class="feature-code">03 // ARCHITECTURE</span>
+                    <h4>Universal Target</h4>
+                    <p>
+                        Offers a unified API that runs natively in Rust backends (Axum/Actix) as well as frontends via WebAssembly bindings.
+                    </p>
+                </div>
+            </div>
+        </article>
     </div>
-
-    <div class="search-box glass-panel fade-up delay-1">
-        {#if !searcher.isReady}
-            <div class="loading-state">
-                <span class="spinner"></span>
-                Loading WebAssembly module...
-            </div>
-        {:else}
-            <div class="input-wrapper">
-                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <input
-                    type="text"
-                    bind:value={searcher.query}
-                    placeholder="Start typing to search..."
-                />
-            </div>
-
-            <div class="results-container">
-                {#if searcher.query.trim() && searcher.result.length === 0}
-                    <div class="empty-state">
-                        <p>No matches found for "{searcher.query}"</p>
-                    </div>
-                {/if}
-
-                <ul class="result-list">
-                    {#each searcher.result as item (item.key)}
-                        <li class="result-item">
-                            <span class="item-key">{item.key}</span>
-                            <span class="badge">
-                                {#if item.is_exact}
-                                    <span class="badge-dot"></span>
-                                    Exact Match
-                                {:else}
-                                    Dist: {item.distance}
-                                {/if}
-                            </span>
-                        </li>
-                    {/each}
-                </ul>
-            </div>
-        {/if}
-    </div>
-
-    <section class="info-card glass-panel fade-up delay-2">
-        <div class="info-header">
-            <h2>How this works</h2>
-            <span class="tech-pill">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
-                Rust + WASM
-            </span>
-        </div>
-
-        <div class="metrics-grid">
-            <div class="metric-item">
-                <span class="metric-value">106k</span>
-                <span class="metric-label">Words</span>
-            </div>
-            <div class="metric-divider"></div>
-            <div class="metric-item">
-                <span class="metric-value">0</span>
-                <span class="metric-label">Server Calls</span>
-            </div>
-            <div class="metric-divider"></div>
-            <div class="metric-item">
-                <span class="metric-value">~300 KB</span>
-                <span class="metric-label">Bundle Size</span>
-            </div>
-        </div>
-
-        <div class="features-list">
-            <div class="feature-item">
-                <div class="feature-icon purple">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                </div>
-                <div class="feature-content">
-                    <h3>Runs Entirely in Browser</h3>
-                    <p>
-                        This demo runs Rust compiled to WebAssembly locally. Once loaded, typing generates responses instantly without making any network requests.
-                    </p>
-                </div>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-icon red">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                </div>
-                <div class="feature-content">
-                    <h3>Typo Tolerance</h3>
-                    <p>
-                        Under the hood, it pairs Finite State Transducers (FSTs) with Levenshtein Automata to catch typos quickly without causing UI lag.
-                    </p>
-                </div>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-icon purple">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-                </div>
-                <div class="feature-content">
-                    <h3>Trade-off</h3>
-                    <p>
-                        Indexing ~106k words adds a small upfront download (~300 KB), but in exchange, searches feel instantaneous afterward.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="info-footer">
-            <a href={GITHUB_REPO_URL} target="_blank" rel="noopener noreferrer" class="github-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-                View source code on GitHub
-                <span class="arrow">→</span>
-            </a>
-        </div>
-    </section>
 </main>
 
 <style>
-    .glass-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: var(--surface);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-bottom: 1px solid var(--border);
-        z-index: 100;
-        padding: 1rem 0;
+    :root {
+        --bg-main: #0a0a0a;
+        --bg-card: #141414;
+        --bg-card-hover: #1f1f1f;
+        --text-primary: #f5f5f5;
+        --text-secondary: #a3a3a3;
+        --text-tertiary: #525252;
+
+        --accent: #ff334b;
+        --accent-dim: rgba(255, 51, 75, 0.12);
+
+        --border: #262626;
+        --border-hover: #404040;
+        --font-sans: "Inter", system-ui, sans-serif;
+        --font-display: "Space Grotesk", sans-serif;
+        --font-mono: "Fira Code", monospace;
+        --radius: 1.5rem;
+        --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .nav-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
     }
-    .back-link {
-        display: flex;
+
+    .top-nav {
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    .btn-back {
+        display: inline-flex;
         align-items: center;
         gap: 0.5rem;
+        color: var(--text-secondary);
         text-decoration: none;
-        color: var(--text-muted);
+        font-family: var(--font-sans);
+        font-size: 0.95rem;
         font-weight: 500;
-        transition: all 0.3s ease;
+        transition: color var(--transition);
     }
-    .back-link:hover {
+
+    .btn-back:hover {
         color: var(--accent);
-        text-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
     }
 
-    .search-page-container {
-        padding-top: 120px;
-        padding-bottom: 4rem;
-        max-width: 700px;
+    .page-header {
+        margin: 2rem 0 3rem 0;
     }
 
-    .search-box {
-        overflow: hidden;
-        margin-bottom: 2rem;
+    .mono-badge {
+        display: inline-block;
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--text-tertiary);
+        margin-bottom: 1rem;
+        border: 1px solid var(--border);
+        padding: 0.2rem 0.8rem;
+        border-radius: 100px;
+    }
+
+    .page-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        line-height: 1.1;
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.03em;
+    }
+
+    .page-desc {
+        color: var(--text-secondary);
+        font-size: 1.15rem;
+        max-width: 650px;
+    }
+
+    .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 4rem;
+    }
+
+    .col-span-1 { grid-column: span 1; }
+    .col-span-2 { grid-column: span 2; }
+    .col-span-3 { grid-column: span 3; }
+
+    .bento-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        transition: border-color var(--transition);
+        position: relative;
+    }
+
+    .bento-card:hover {
+        border-color: var(--border-hover);
+    }
+
+    .card-title {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .accent-text {
+        color: var(--accent);
     }
 
     .input-wrapper {
         position: relative;
-        border-bottom: 1px solid var(--border);
-        background: rgba(10, 5, 20, 0.4);
-        transition: background 0.3s ease;
+        margin-bottom: 1.5rem;
     }
 
     .search-icon {
         position: absolute;
-        left: 1.5rem;
+        left: 1rem;
         top: 50%;
         transform: translateY(-50%);
-        color: var(--accent);
-        opacity: 0.7;
+        color: var(--text-tertiary);
     }
 
     input {
         width: 100%;
-        padding: 1.5rem 1.5rem 1.5rem 3.5rem;
-        font-size: 1.25rem;
+        background: var(--bg-main);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.9rem 1rem 0.9rem 2.8rem;
+        color: var(--text-primary);
         font-family: var(--font-sans);
-        color: var(--text-main);
-        background: transparent;
-        border: none;
+        font-size: 1rem;
         outline: none;
-        transition: all 0.3s ease;
+        transition: border-color var(--transition);
     }
 
-    input::placeholder { color: var(--text-muted); opacity: 0.5; }
-    input:focus { background: rgba(35, 20, 50, 0.4); }
+    input:focus {
+        border-color: var(--accent);
+    }
+
+    input::placeholder {
+        color: var(--text-tertiary);
+    }
 
     .results-container {
-        background: transparent;
-        min-height: 100px;
-        max-height: 500px;
+        background: var(--bg-main);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        min-height: 220px;
+        max-height: 320px;
         overflow-y: auto;
-    }
-
-    /* Custom Scrollbar for dark theme */
-    .results-container::-webkit-scrollbar {
-        width: 6px;
-    }
-    .results-container::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.2);
-    }
-    .results-container::-webkit-scrollbar-thumb {
-        background: var(--border);
-        border-radius: 4px;
-    }
-    .results-container::-webkit-scrollbar-thumb:hover {
-        background: var(--accent);
     }
 
     .result-list {
@@ -248,200 +304,211 @@
     }
 
     .result-item {
-        padding: 1rem 1.5rem;
+        padding: 0.85rem 1.25rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        border-left: 2px solid transparent;
-        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        border-bottom: 1px solid var(--border);
+        transition: background var(--transition);
     }
 
-    .result-item:last-child { border-bottom: none; }
+    .result-item:last-child {
+        border-bottom: none;
+    }
 
     .result-item:hover {
-        background: var(--surface-hover);
-        border-left-color: var(--accent);
-        padding-left: 2rem;
+        background: var(--bg-card-hover);
     }
 
     .item-key {
-        font-weight: 500;
-        font-size: 1.1rem;
-        color: var(--text-main);
+        font-family: var(--font-mono);
+        color: var(--text-primary);
+        font-size: 0.95rem;
     }
 
+    .badge {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        padding: 0.2rem 0.6rem;
+        border-radius: 4px;
+        border: 1px solid var(--border);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    .badge.exact {
+        color: #27c93f;
+        border-color: rgba(39, 201, 63, 0.3);
+        background: rgba(39, 201, 63, 0.05);
+    }
+
+    .badge.fuzzy {
+        color: var(--text-secondary);
+    }
+
+    .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+    }
+
+    .dot.green { background: #27c93f; }
+
     .empty-state, .loading-state {
-        padding: 3rem 1.5rem;
-        text-align: center;
-        color: var(--text-muted);
-        font-weight: 500;
+        height: 100%;
+        min-height: 200px;
         display: flex;
         align-items: center;
         justify-content: center;
+        color: var(--text-tertiary);
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
         gap: 0.75rem;
     }
 
     .spinner {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
         border: 2px solid var(--border);
         border-top-color: var(--accent);
         border-radius: 50%;
-        animation: spin 1s linear infinite;
+        animation: spin 0.8s linear infinite;
     }
 
     @keyframes spin {
         to { transform: rotate(360deg); }
     }
 
-    .info-card {
-        padding: 1.75rem;
+    .metrics-stack {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
-    }
-
-    .info-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .info-header h2 {
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: var(--text-main);
-        margin: 0;
-    }
-
-    .tech-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-        padding: 0.35rem 0.85rem;
-        font-size: 0.75rem;
-        font-family: var(--font-mono);
-        font-weight: 600;
-        color: var(--accent);
-        background: rgba(168, 85, 247, 0.15);
-        border: 1px solid var(--border);
-        border-radius: 9999px;
-        box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
-    }
-
-    .metrics-grid {
-        display: flex;
-        align-items: center;
         justify-content: space-around;
-        padding: 1rem;
-        background: rgba(10, 5, 20, 0.4);
-        border: 1px solid var(--border);
-        border-radius: 0.75rem;
+        height: 100%;
     }
 
     .metric-item {
         display: flex;
         flex-direction: column;
-        align-items: center;
     }
 
     .metric-value {
-        font-size: 1.25rem;
         font-family: var(--font-mono);
+        font-size: 1.8rem;
         font-weight: 700;
-        color: var(--accent);
+        color: var(--text-primary);
     }
 
     .metric-label {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
+        color: var(--text-tertiary);
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        color: var(--text-muted);
-        margin-top: 0.25rem;
+        margin-top: 0.2rem;
     }
 
     .metric-divider {
-        width: 1px;
-        height: 32px;
+        height: 1px;
         background: var(--border);
+        margin: 1rem 0;
     }
 
-    .features-list {
+    .system-header {
         display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-    }
-
-    .feature-item {
-        display: flex;
+        justify-content: space-between;
         align-items: flex-start;
-        gap: 1rem;
+        margin-bottom: 2rem;
     }
 
-    .feature-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
-        margin-top: 0.1rem;
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
     }
 
-    .feature-icon.purple {
-        background: rgba(168, 85, 247, 0.15);
+    .feature-box {
+        background: var(--bg-main);
+        border: 1px solid var(--border);
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
+
+    .feature-code {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
         color: var(--accent);
-        border: 1px solid rgba(168, 85, 247, 0.3);
+        margin-bottom: 0.75rem;
     }
 
-    .feature-icon.red {
-        background: rgba(225, 29, 72, 0.15);
-        color: var(--accent-red);
-        border: 1px solid rgba(225, 29, 72, 0.3);
+    .feature-box h4 {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
     }
 
-    .feature-content h3 {
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--text-main);
-        margin: 0 0 0.35rem 0;
-    }
-
-    .feature-content p {
+    .feature-box p {
+        color: var(--text-secondary);
         font-size: 0.9rem;
-        color: var(--text-muted);
-        line-height: 1.6;
-        margin: 0;
+        line-height: 1.5;
     }
 
-    .info-footer {
-        padding-top: 1.25rem;
-        border-top: 1px solid var(--border);
+    .feature-box code {
+        font-family: var(--font-mono);
+        color: var(--text-primary);
+        background: var(--bg-card);
+        padding: 0.1rem 0.3rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
     }
 
-    .github-link {
+    .btn {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        color: var(--text-main);
-        text-decoration: none;
-        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+        border-radius: 8px;
         font-weight: 500;
-        transition: color 0.3s ease;
+        text-decoration: none;
+        transition: all var(--transition);
+        font-size: 0.9rem;
     }
 
-    .github-link:hover {
+    .btn-secondary {
+        background: transparent;
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+        border-color: var(--accent);
         color: var(--accent);
     }
 
-    .github-link .arrow {
-        transition: transform 0.3s ease;
+    .btn-secondary:hover .arrow {
+        transform: translateX(3px);
     }
 
-    .github-link:hover .arrow {
-        transform: translateX(4px);
-        color: var(--accent-red);
+    .arrow {
+        transition: transform var(--transition);
+    }
+
+    @media (max-width: 900px) {
+        .bento-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .col-span-1, .col-span-2, .col-span-3 {
+            grid-column: span 1;
+        }
+
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .system-header {
+            flex-direction: column;
+            gap: 1rem;
+        }
     }
 </style>
