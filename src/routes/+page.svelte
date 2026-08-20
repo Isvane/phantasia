@@ -92,7 +92,7 @@
                         <span class="stack-category">{category}</span>
                         <div class="pill-group">
                             {#each techs as tech}
-                                <span class="tech-pill">{tech}</span>
+                                <span>{tech}</span>
                             {/each}
                         </div>
                     </div>
@@ -125,15 +125,11 @@
                             <span class="dot max"></span>
                         </div>
                         <div class="term-body">
-                            <pre><code><span class="cmd">$ cargo bench --bench fuzzy_search</span>
-
-Running benches/fuzzy_search.rs
-
-test bench_fuzzy_match ...
-bench: [ <span class="accent-text">800 ps</span> <span class="accent-text">820 ps</span> 845 ps ]
-       [ 1.2M ops/sec ]
-
-test result: ok. 0 failed; 1 measured</code></pre>
+                            <pre><code><span class="cmd">$ cargo bench</span>
+                                Running benches/dict_bench.rs
+                                Search Queries/Fuzzy + Transposition (distance=1)
+                                                        time:   [ <span class="accent-text">8.39 µs</span> <span class="accent-text">8.41 µs</span> 8.43 µs]
+                            </code></pre>
                         </div>
                     </div>
                 </div>
