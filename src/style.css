@@ -348,6 +348,7 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+    flex-grow: 1;
 }
 
 .pr-item {
@@ -443,4 +444,55 @@ body {
     .visual-card {
         aspect-ratio: 16/9;
     }
+}
+
+.audio-card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.audio-card .card-title {
+    margin-bottom: 1rem;
+}
+
+.spotify-wrapper {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.os-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.5rem;
+}
+
+.os-view-all {
+    color: var(--text-tertiary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+    transition: color var(--transition);
+}
+
+.os-view-all:hover {
+    color: var(--accent);
+}
+
+.pr-action {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    transition: color var(--transition), transform var(--transition);
+}
+
+.pr-item:hover .pr-action {
+    color: var(--accent);
+    transform: translateX(4px);
 }
